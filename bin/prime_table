@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+require_relative '../app/all'
+require 'optparse'
+
+count = 10
+
+OptionParser.new do |opts|
+  opts.banner = 'Usage: prime_table [options]'
+  opts.on('-c', '--count COUNT') do |new_count|
+    count = new_count.to_i
+  end
+end.parse!
+
+table = MultiplicationTable.new(Prime.first count)
+puts Presenter.new(table)
